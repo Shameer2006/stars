@@ -150,6 +150,7 @@ export default function ShareModal({
             {/* Preview Strip */}
             {previewUrl && (
               <div className="w-full bg-gray-950 flex items-center justify-center overflow-hidden border-b border-gray-100" style={{ height: 96 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={previewUrl}
                   alt={`${name} in Stars`}

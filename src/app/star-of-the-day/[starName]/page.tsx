@@ -59,7 +59,7 @@ export default function StarDetailPage({
               <div className="text-4xl mb-4 text-amber-400/50">★</div>
               <h1 className="text-2xl font-cinzel text-white mb-2">Star Not Found</h1>
               <p className="text-gray-400 font-cormorant text-lg">
-                We couldn't find detailed information for {decodedName}.
+                We couldn&apos;t find detailed information for {decodedName}.
               </p>
             </motion.div>
           ) : (
@@ -76,6 +76,7 @@ export default function StarDetailPage({
               {/* High-res Image */}
               {wikiData.originalimage || wikiData.thumbnail ? (
                 <div className="relative w-48 h-48 sm:w-72 sm:h-72 mb-8 rounded-full overflow-hidden shadow-[0_0_60px_rgba(212,168,86,0.15)] border border-white/10">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={wikiData.originalimage?.source || wikiData.thumbnail?.source}
                     alt={wikiData.title}
