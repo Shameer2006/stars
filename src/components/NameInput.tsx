@@ -143,7 +143,7 @@ export default function NameInput({
             onClick={() => setShareOpen(true)}
             disabled={!hasResults}
             className="p-2.5 rounded-lg transition-all duration-300 disabled:opacity-30 text-gray-400 hover:text-white hover:bg-white/10"
-            title="Share via QR Code"
+            title="Share"
           >
             <svg
               width="20"
@@ -155,14 +155,9 @@ export default function NameInput({
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <rect x="3" y="3" width="7" height="7" />
-              <rect x="14" y="3" width="7" height="7" />
-              <rect x="14" y="14" width="7" height="7" />
-              <rect x="3" y="14" width="7" height="7" />
-              <path d="M6 6h1v1H6z" />
-              <path d="M17 6h1v1h-1z" />
-              <path d="M17 17h1v1h-1z" />
-              <path d="M6 17h1v1H6z" />
+              <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+              <polyline points="16 6 12 2 8 6"></polyline>
+              <line x1="12" y1="2" x2="12" y2="15"></line>
             </svg>
           </button>
         </div>

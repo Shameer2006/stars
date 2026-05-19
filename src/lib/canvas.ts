@@ -360,7 +360,7 @@ export function renderFieldStars(
   }
 }
 
-// ── Download render (static, high-res, with decorative border) ──────
+// ── Download render (static, high-res, with label) ──────────────────
 export function renderDownloadImage(
   letterResults: { letter: string; stars: MappedStar[]; bgStars: MappedStar[] }[],
   name: string,
@@ -368,7 +368,8 @@ export function renderDownloadImage(
   tileH: number
 ): HTMLCanvasElement {
   const canvasW = letterResults.length * tileW;
-  const canvasH = tileH;
+  const labelHeight = 80;
+  const canvasH = tileH + labelHeight;
 
   const canvas = document.createElement('canvas');
   canvas.width = canvasW * 2; // 2× for high res
@@ -376,17 +377,17 @@ export function renderDownloadImage(
   const ctx = canvas.getContext('2d')!;
   ctx.scale(2, 2);
 
-  // Render each tile
+  // 1. Draw one continuous background for the entire panorama to avoid seams
+  drawSpaceBackground(ctx, canvasW, canvasH);
+
+  // 2. Render each tile's stars and lines
   const time = Date.now(); // Static snapshot
   letterResults.forEach((lr, i) => {
     const x = i * tileW;
-    const y = 0;
 
     ctx.save();
-    ctx.translate(x, y);
+    ctx.translate(x, 0);
 
-    // Tile background
-    drawSpaceBackground(ctx, tileW, tileH);
     drawBackgroundStars(ctx, lr.bgStars, time);
     drawConstellationLines(ctx, lr.stars);
 
@@ -397,6 +398,19 @@ export function renderDownloadImage(
 
     ctx.restore();
   });
+
+  // 3. Draw the name at the bottom center
+  ctx.fillStyle = '#d4a856';
+  ctx.font = 'bold 24px "Cinzel", serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  // Use letter-spacing equivalent (manual or via spacing hack, though Canvas doesn't natively support it well without polyfills. We'll rely on the font itself)
+  ctx.fillText(name.toUpperCase(), canvasW / 2, tileH + labelHeight / 2 - 12);
+  
+  ctx.fillStyle = '#9ca3af';
+  ctx.font = '14px "Cormorant Garamond", serif';
+  ctx.letterSpacing = '3px'; // Supported in modern browsers for canvas ctx
+  ctx.fillText('WRITTEN IN REAL STARS', canvasW / 2, tileH + labelHeight / 2 + 12);
 
   return canvas;
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Cinzel, Cormorant_Garamond } from 'next/font/google';
+import IntroVideo from '@/components/IntroVideo';
 import './globals.css';
 
 const cinzel = Cinzel({
@@ -21,12 +22,17 @@ export const metadata: Metadata = {
   description:
     'Type your name and see it written across the night sky using real stars from the HYG Stellar Database. Every star is a real sun in our galaxy. Free, beautiful, shareable.',
   keywords: ['stars', 'name in stars', 'astronomy', 'HYG database', 'constellation', 'space'],
+  icons: {
+    icon: '/favicon.png',
+    apple: '/favicon.png',
+  },
   openGraph: {
     title: 'Your Name in Stars',
     description: 'See your name written in real stars from the night sky ✨',
     type: 'website',
   },
 };
+
 
 export default function RootLayout({
   children,
@@ -36,6 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cinzel.variable} ${cormorant.variable}`}>
       <body className="bg-[#040412] text-white min-h-screen antialiased overflow-x-hidden">
+        <IntroVideo />
         {children}
       </body>
     </html>
