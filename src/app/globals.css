@@ -2,26 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Design tokens ──────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --space-deep: #040412;
+  --space-mid: #0a0a2e;
+  --space-nebula: #1a1040;
+  --gold: #d4a856;
+  --gold-bright: #ffd700;
+  --star-white: #f0f0ff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Global resets ──────────────────────────────────── */
+* {
+  box-sizing: border-box;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--space-deep);
+  color: var(--star-white);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* ── Font utility classes for Tailwind ──────────────── */
+.font-cinzel {
+  font-family: var(--font-cinzel), 'Cinzel', serif;
+}
+
+.font-cormorant {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
+}
+
+/* ── Custom scrollbar ───────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(4, 4, 18, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 168, 86, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 168, 86, 0.5);
+}
+
+/* ── Selection color ────────────────────────────────── */
+::selection {
+  background: rgba(212, 168, 86, 0.3);
+  color: #fff;
+}
+
+/* ── Animations ─────────────────────────────────────── */
+@keyframes pulse-gold {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(212, 168, 86, 0.2);
   }
+  50% {
+    box-shadow: 0 0 20px rgba(212, 168, 86, 0.4);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
