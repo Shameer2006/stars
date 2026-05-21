@@ -24,9 +24,14 @@ export default function ShareModal({
   tileWidth = 220,
   tileHeight = 300,
 }: ShareModalProps) {
+  const [mounted, setMounted] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const [copied, setCopied] = useState(false);
   const qrRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Build the shareable URL
   const shareUrl =
@@ -86,6 +91,8 @@ export default function ShareModal({
       // fallback: select the text
     }
   };
+
+  if (!mounted) return null;
 
   return createPortal(
     <AnimatePresence>

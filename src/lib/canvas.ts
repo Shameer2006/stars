@@ -47,6 +47,21 @@ export function starColor(ci?: number): string {
   return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
 }
 
+/**
+ * Safely applies an alpha (opacity) value to a color string.
+ * Supports hex colors (e.g., #ffffff) and rgb colors (e.g., rgb(255, 255, 255)).
+ */
+function applyAlpha(color: string, alpha: number): string {
+  if (color.startsWith('#')) {
+    const a = Math.round(alpha * 255).toString(16).padStart(2, '0');
+    return `${color}${a}`;
+  }
+  if (color.startsWith('rgb(')) {
+    return color.replace('rgb(', 'rgba(').replace(')', `, ${alpha})`);
+  }
+  return color;
+}
+
 // ── Map magnitude to radius ─────────────────────────────────────────
 function magToRadius(mag: number, isNamed: boolean = false, isLetterStar: boolean = false): number {
   // Brighter stars (lower mag) get larger radius
@@ -108,9 +123,10 @@ export function drawStar(
   const glowRadius = radius * glowMult;
   const glow = ctx.createRadialGradient(x, y, 0, x, y, glowRadius);
   glow.addColorStop(0, color);
-  glow.addColorStop(0.15, color);
-  glow.addColorStop(0.35, `${color}66`);
-  glow.addColorStop(0.6, `${color}22`);
+  glow.addColorStop(0.1, applyAlpha(color, 0.7));
+  glow.addColorStop(0.22, applyAlpha(color, 0.35));
+  glow.addColorStop(0.4, applyAlpha(color, 0.15));
+  glow.addColorStop(0.65, applyAlpha(color, 0.05));
   glow.addColorStop(1, 'transparent');
   ctx.fillStyle = glow;
   ctx.beginPath();
@@ -142,38 +158,9 @@ function drawDiffractionSpikes(
   twinkle: number,
   color: string
 ): void {
-  const spikeLength = radius * 4 * twinkle;
-
-  ctx.save();
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 0.8;
-  ctx.globalAlpha = 0.5 * twinkle;
-
-  // Vertical spike
-  ctx.beginPath();
-  ctx.moveTo(x, y - spikeLength);
-  ctx.lineTo(x, y + spikeLength);
-  ctx.stroke();
-
-  // Horizontal spike
-  ctx.beginPath();
-  ctx.moveTo(x - spikeLength, y);
-  ctx.lineTo(x + spikeLength, y);
-  ctx.stroke();
-
-  // Diagonal spikes (fainter, shorter)
-  ctx.globalAlpha = 0.25 * twinkle;
-  const diagLen = spikeLength * 0.6;
-  ctx.beginPath();
-  ctx.moveTo(x - diagLen, y - diagLen);
-  ctx.lineTo(x + diagLen, y + diagLen);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(x + diagLen, y - diagLen);
-  ctx.lineTo(x - diagLen, y + diagLen);
-  ctx.stroke();
-
-  ctx.restore();
+  // Disabled diffraction spikes (star rays lines) as requested by the user.
+  if (!ctx || !x || !y || !radius || !twinkle || !color) return;
+  return;
 }
 
 // ── Background stars ────────────────────────────────────────────────
@@ -182,17 +169,14 @@ export function drawBackgroundStars(
   bgStars: MappedStar[],
   time: number
 ): void {
+  if (time === undefined) return;
   for (let i = 0; i < bgStars.length; i++) {
     const star = bgStars[i];
-    const freq = 0.5 + (i % 7) * 0.15;
-    const phase = i * 2.39;
-    const twinkle = 0.3 + Math.sin(time * 0.001 * freq + phase) * 0.2;
-
     const r = Math.min(1.5, Math.max(0.5, 2.5 - star.mag * 0.3));
     const color = starColor(star.ci);
 
     ctx.save();
-    ctx.globalAlpha = twinkle;
+    ctx.globalAlpha = 0.35; // Steady opacity, twinkling disabled
     ctx.fillStyle = color;
     ctx.beginPath();
     ctx.arc(star.screenX, star.screenY, r, 0, Math.PI * 2);
@@ -261,12 +245,10 @@ export function renderTileFrame(
   // 3. Constellation lines
   drawConstellationLines(ctx, letterStars);
 
-  // 4. Letter stars with twinkle — these are the bright ones forming the letter
+  // 4. Letter stars — steady brightness, twinkling disabled
   for (let i = 0; i < letterStars.length; i++) {
     const star = letterStars[i];
-    const freq = 0.8 + (i % 5) * 0.1;
-    const phase = i * 1.7;
-    const twinkle = 0.9 + Math.sin(time * 0.001 * freq + phase) * 0.1;
+    const twinkle = 1.0; // Constant steady brightness
 
     drawStar(
       ctx,
@@ -346,18 +328,38 @@ export function renderFieldStars(
   const parallaxY = (mouseY - h / 2) * 0.015;
 
   for (const star of stars) {
-    const twinkle = star.opacity + Math.sin(time * 0.001 * star.freq + star.phase) * 0.15;
     const x = star.x + parallaxX * star.radius;
     const y = star.y + parallaxY * star.radius;
 
     ctx.save();
-    ctx.globalAlpha = Math.max(0.05, twinkle);
+    ctx.globalAlpha = star.opacity; // Steady opacity, twinkling disabled
     ctx.fillStyle = '#e8e8ff';
     ctx.beginPath();
     ctx.arc(x, y, star.radius, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
   }
+}
+
+export function renderRoundedRect(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  r: number
+): void {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
 }
 
 // ── Download render (static, high-res, with label) ──────────────────
@@ -367,9 +369,28 @@ export function renderDownloadImage(
   tileW: number,
   tileH: number
 ): HTMLCanvasElement {
-  const canvasW = letterResults.length * tileW;
-  const labelHeight = 80;
-  const canvasH = tileH + labelHeight;
+  const gap = 12;
+  const paddingX = 24;
+  const paddingY = 28;
+  const labelHeight = 90;
+
+  // Calculate layout coordinates
+  let canvasW = paddingX * 2;
+  const tilePositions: number[] = [];
+
+  letterResults.forEach((lr, i) => {
+    tilePositions.push(canvasW);
+    if (lr.letter === ' ') {
+      canvasW += tileW * 0.4;
+    } else {
+      canvasW += tileW;
+    }
+    if (i < letterResults.length - 1) {
+      canvasW += gap;
+    }
+  });
+  canvasW += paddingX;
+  const canvasH = tileH + paddingY * 2 + labelHeight;
 
   const canvas = document.createElement('canvas');
   canvas.width = canvasW * 2; // 2× for high res
@@ -377,25 +398,48 @@ export function renderDownloadImage(
   const ctx = canvas.getContext('2d')!;
   ctx.scale(2, 2);
 
-  // 1. Draw one continuous background for the entire panorama to avoid seams
-  drawSpaceBackground(ctx, canvasW, canvasH);
+  // 1. Draw solid dark background for the entire panorama
+  ctx.fillStyle = '#060614';
+  ctx.fillRect(0, 0, canvasW, canvasH);
 
-  // 2. Render each tile's stars and lines
-  const time = Date.now(); // Static snapshot
+  // 2. Render each tile panel
+  const time = Date.now();
   letterResults.forEach((lr, i) => {
-    const x = i * tileW;
+    if (lr.letter === ' ') return; // Skip space drawing, just leave the gap
+
+    const x = tilePositions[i];
+    const y = paddingY;
 
     ctx.save();
-    ctx.translate(x, 0);
+    
+    // Create rounded clipping region for the tile card
+    renderRoundedRect(ctx, x, y, tileW, tileH, 12);
+    ctx.clip();
 
+    // Translate to tile's origin to reuse local drawing functions
+    ctx.translate(x, y);
+
+    // Draw card background
+    drawSpaceBackground(ctx, tileW, tileH);
+    // Draw background stars
     drawBackgroundStars(ctx, lr.bgStars, time);
+    // Draw constellation lines
     drawConstellationLines(ctx, lr.stars);
 
+    // Draw letter stars
     for (let j = 0; j < lr.stars.length; j++) {
       const star = lr.stars[j];
       drawStar(ctx, star.screenX, star.screenY, star.mag, 1.0, star.ci, !!star.proper, true);
     }
 
+    ctx.restore();
+
+    // Draw a subtle border outline around the tile card
+    ctx.save();
+    renderRoundedRect(ctx, x, y, tileW, tileH, 12);
+    ctx.strokeStyle = 'rgba(212, 168, 86, 0.22)'; // elegant warm gold border
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
     ctx.restore();
   });
 
@@ -404,13 +448,12 @@ export function renderDownloadImage(
   ctx.font = 'bold 24px "Cinzel", serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  // Use letter-spacing equivalent (manual or via spacing hack, though Canvas doesn't natively support it well without polyfills. We'll rely on the font itself)
-  ctx.fillText(name.toUpperCase(), canvasW / 2, tileH + labelHeight / 2 - 12);
+  ctx.fillText(name.toUpperCase(), canvasW / 2, tileH + paddingY + labelHeight / 2 - 12);
   
   ctx.fillStyle = '#9ca3af';
   ctx.font = '14px "Cormorant Garamond", serif';
-  ctx.letterSpacing = '3px'; // Supported in modern browsers for canvas ctx
-  ctx.fillText('WRITTEN IN REAL STARS', canvasW / 2, tileH + labelHeight / 2 + 12);
+  (ctx as unknown as { letterSpacing: string }).letterSpacing = '3px'; // Supported in modern browsers
+  ctx.fillText('WRITTEN IN REAL STARS', canvasW / 2, tileH + paddingY + labelHeight / 2 + 12);
 
   return canvas;
 }

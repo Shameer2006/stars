@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     description: 'See your name written in real stars from the night sky ✨',
     type: 'website',
   },
+  verification: {
+    google: 'google28b6dbf4d718a7b0',
+  },
 };
 
 

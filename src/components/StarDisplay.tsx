@@ -52,7 +52,8 @@ export default function StarDisplay({ results, tileWidth, tileHeight }: StarDisp
 
     const gap = 6; // gap between tiles in px
     const padding = 32; // horizontal padding
-    const availableWidth = (containerWidth || window.innerWidth) - padding;
+    const winWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
+    const availableWidth = (containerWidth || winWidth) - padding;
 
     // Count letter tiles (spaces are narrower)
     const letterCount = results.filter(r => r.letter !== ' ').length;
@@ -69,8 +70,8 @@ export default function StarDisplay({ results, tileWidth, tileHeight }: StarDisp
     // Scale down to fit
     const scale = availableWidth / totalNeeded;
     return {
-      actualWidth: Math.max(40, Math.floor(tileWidth * scale)),
-      actualHeight: Math.max(60, Math.floor(tileHeight * scale)),
+      actualWidth: Math.max(60, Math.floor(tileWidth * scale)),
+      actualHeight: Math.max(82, Math.floor(tileHeight * scale)),
     };
   }, [results, tileWidth, tileHeight, containerWidth]);
 
@@ -79,20 +80,33 @@ export default function StarDisplay({ results, tileWidth, tileHeight }: StarDisp
   const totalStars = results.reduce((sum, r) => sum + r.stars.length, 0);
 
   return (
-    <div className="relative w-full" ref={containerRef}>
-      {/* Tiles row — single line, no wrapping */}
-      <div className="flex items-center justify-center gap-1.5 px-4 flex-nowrap">
+    <div className="relative w-full overflow-hidden" ref={containerRef}>
+      {/* Tiles row — single line, scrolls on overflow */}
+      <div className="flex items-center justify-start md:justify-center gap-1.5 px-4 flex-nowrap overflow-x-auto scrollbar-none py-4 scroll-smooth w-full">
         <AnimatePresence mode="wait">
           {results.map((result, i) => (
             <motion.div
               key={`${result.letter}-${i}`}
               initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{
-                delay: i * 0.08,
-                duration: 0.5,
-                ease: [0.25, 0.46, 0.45, 0.94],
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                transition: {
+                  delay: i * 0.08,
+                  duration: 0.45,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                },
+              }}
+              exit={{
+                opacity: 0,
+                y: -30,
+                scale: 0.9,
+                transition: {
+                  delay: i * 0.05,
+                  duration: 0.35,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                },
               }}
               className="flex-shrink-0"
             >

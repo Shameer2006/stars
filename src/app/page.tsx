@@ -55,12 +55,23 @@ function HomeContent() {
     [dataLoaded, allStars]
   );
 
-  // Auto-render name from ?name= query param once data is loaded
+  // Auto-render name from ?name= query param or default to Star of the Day name once data is loaded
   useEffect(() => {
-    if (!dataLoaded) return;
+    if (!dataLoaded || allStars.length === 0 || namedStars.length === 0) return;
     const sharedName = searchParams.get('name');
     if (sharedName && sharedName.trim().length > 0) {
       handleSubmit(sharedName.trim().slice(0, 16));
+    } else {
+      // Deterministically select Star of the Day's name
+      const now = new Date();
+      const startOfYear = new Date(now.getFullYear(), 0, 0);
+      const diff = now.getTime() - startOfYear.getTime();
+      const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const idx = dayOfYear % namedStars.length;
+      const selectedStar = namedStars[idx];
+      if (selectedStar && selectedStar.proper) {
+        handleSubmit(selectedStar.proper.trim().slice(0, 16));
+      }
     }
     // Only run once after data loads
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,18 +85,18 @@ function HomeContent() {
       {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Header */}
-        <header className="pt-10 pb-4 text-center">
+        <header className="pt-5 pb-2 sm:pt-10 sm:pb-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <h1 className="text-4xl md:text-5xl font-cinzel font-semibold tracking-wider">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-cinzel font-semibold tracking-wider px-4">
               <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 bg-clip-text text-transparent">
                 Your Name in Stars
               </span>
             </h1>
-            <p className="mt-3 text-sm md:text-base text-gray-400 font-cormorant tracking-wide max-w-lg mx-auto px-4">
+            <p className="mt-1.5 sm:mt-3 text-xs sm:text-sm md:text-base text-gray-400 font-cormorant tracking-wide max-w-lg mx-auto px-4 leading-relaxed">
               Every letter traced by a real star from the night sky.
               <br className="hidden md:block" />
               Your name has always been out there, written in light across the galaxy.
@@ -97,7 +108,7 @@ function HomeContent() {
         {dataLoaded && <StarOfDay namedStars={namedStars} />}
 
         {/* Main display area */}
-        <div className="flex-1 flex flex-col items-center justify-center py-8">
+        <div className="flex-1 flex flex-col items-center justify-center py-3 sm:py-6 md:py-8">
           {results.length > 0 ? (
             <StarDisplay
               results={results}
@@ -132,7 +143,7 @@ function HomeContent() {
         </div>
 
         {/* Input bar */}
-        <div className="sticky bottom-0 py-6 z-20">
+        <div className="sticky bottom-0 py-3 sm:py-6 z-20">
           <NameInput
             onSubmit={handleSubmit}
             results={results}

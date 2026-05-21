@@ -65,12 +65,17 @@ export default function LetterTile({
     const mx = e.clientX - rect.left;
     const my = e.clientY - rect.top;
 
+    const scaleX = width / 220;
+    const scaleY = height / 300;
+
     // Hit-test: find star closest to cursor
     let closest: MappedStar | null = null;
     let closestDist = 20; // max pixel distance to trigger
 
     for (const star of stars) {
-      const d = Math.hypot(star.screenX - mx, star.screenY - my);
+      const sx = star.screenX * scaleX;
+      const sy = star.screenY * scaleY;
+      const d = Math.hypot(sx - mx, sy - my);
       if (d < closestDist) {
         closestDist = d;
         closest = star;

@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function IntroVideo() {
-  const [showIntro, setShowIntro] = useState<boolean | null>(null);
+  const [showIntro, setShowIntro] = useState<boolean>(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -13,8 +13,6 @@ export default function IntroVideo() {
     const hasPlayed = sessionStorage.getItem('introPlayed');
     if (!hasPlayed) {
       setShowIntro(true);
-    } else {
-      setShowIntro(false);
     }
   }, []);
 
@@ -44,11 +42,11 @@ export default function IntroVideo() {
   };
 
   // If already played, render nothing
-  if (showIntro === false) return null;
+  if (!showIntro) return null;
 
   return (
     <AnimatePresence>
-      {(showIntro === null || showIntro === true) && (
+      {showIntro && (
         <motion.div
           initial={{ opacity: 1 }}
           animate={{ opacity: isFadingOut ? 0 : 1 }}

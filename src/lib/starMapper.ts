@@ -117,19 +117,22 @@ export function matchStarsToLetter(
   // Select ~80 background stars (not used in the letter)
   const bgCandidates = zoneStars.filter((s) => !usedStarIds.has(s.id));
   const bgStars: MappedStar[] = [];
-  const bgCount = Math.min(80, bgCandidates.length);
   
-  // Use a seeded selection to keep it deterministic per letter
-  const seed = upperLetter.charCodeAt(0);
-  for (let i = 0; i < bgCount; i++) {
-    const idx = (seed * 137 + i * 97) % bgCandidates.length;
-    const star = bgCandidates[idx];
-    if (bgStars.find((bs) => bs.id === star.id)) continue;
+  if (bgCandidates.length > 0) {
+    const bgCount = Math.min(80, bgCandidates.length);
     
-    // Project background star to screen using its actual RA/Dec
-    const sx = padX + ((star.ra - raMin) / (raMax - raMin)) * innerW;
-    const sy = padY + ((DEC_MAX - star.dec) / DEC_RANGE) * innerH;
-    bgStars.push({ ...star, screenX: sx, screenY: sy });
+    // Use a seeded selection to keep it deterministic per letter
+    const seed = upperLetter.charCodeAt(0);
+    for (let i = 0; i < bgCount; i++) {
+      const idx = (seed * 137 + i * 97) % bgCandidates.length;
+      const star = bgCandidates[idx];
+      if (bgStars.find((bs) => bs.id === star.id)) continue;
+      
+      // Project background star to screen using its actual RA/Dec
+      const sx = padX + ((star.ra - raMin) / (raMax - raMin)) * innerW;
+      const sy = padY + ((DEC_MAX - star.dec) / DEC_RANGE) * innerH;
+      bgStars.push({ ...star, screenX: sx, screenY: sy });
+    }
   }
 
   // Find anchor star: brightest named star, or brightest star overall
