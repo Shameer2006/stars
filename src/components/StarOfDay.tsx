@@ -42,9 +42,9 @@ export default function StarOfDay({ namedStars }: StarOfDayProps) {
     }
   }, [namedStars]);
 
-  // Only render if we have a valid star, and Wikipedia returned an image and extract
+  // Only render if we have a valid star, and Wikipedia returned an extract
   if (isLoading) return null; // Silently loading
-  if (!star || !wikiData || !wikiData.thumbnail) return null;
+  if (!star || !wikiData) return null;
 
   const distLy = star.dist > 0 ? `${star.dist.toLocaleString()} light-years` : 'Distance unknown';
   
@@ -67,15 +67,21 @@ export default function StarOfDay({ namedStars }: StarOfDayProps) {
             backdropFilter: 'blur(10px)',
           }}
         >
-          {/* Wikipedia Thumbnail */}
-          <div className="w-12 h-12 sm:w-16 md:w-20 sm:h-16 md:h-20 rounded-xl overflow-hidden flex-shrink-0 bg-gray-900 border border-white/20 shadow-lg">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src={wikiData.thumbnail.source} 
-              alt={star.proper}
-              className="w-full h-full object-cover"
-            />
-          </div>
+          {/* Wikipedia Thumbnail Fallback */}
+          {wikiData.thumbnail ? (
+            <div className="w-12 h-12 sm:w-16 md:w-20 sm:h-16 md:h-20 rounded-xl overflow-hidden flex-shrink-0 bg-gray-900 border border-white/20 shadow-lg">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src={wikiData.thumbnail.source} 
+                alt={star.proper}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ) : (
+            <div className="w-12 h-12 sm:w-16 md:w-20 sm:h-16 md:h-20 rounded-xl overflow-hidden flex-shrink-0 bg-gray-900/60 border border-white/10 shadow-lg flex items-center justify-center text-amber-400/30 text-2xl font-cinzel">
+              ★
+            </div>
+          )}
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-0.5">
