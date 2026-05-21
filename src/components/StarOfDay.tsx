@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Star } from '@/types/star';
-import { fetchStarWikiSummary, WikiSummary } from '@/lib/wikipedia';
+import { WikiSummary } from '@/lib/wikipedia';
 
 interface StarOfDayProps {
   namedStars: Star[];
@@ -22,24 +22,27 @@ export default function StarOfDay({ namedStars }: StarOfDayProps) {
   useEffect(() => {
     if (namedStars.length === 0) return;
 
-    // Use day-of-year as deterministic index
     const now = new Date();
     const startOfYear = new Date(now.getFullYear(), 0, 0);
-    const diff = now.getTime() - startOfYear.getTime();
-    const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const idx = dayOfYear % namedStars.length;
+    const dayOfYear = Math.floor((now.getTime() - startOfYear.getTime()) / (1000 * 60 * 60 * 24));
 
-    const selectedStar = namedStars[idx];
-    setStar(selectedStar);
-
-    if (selectedStar.proper) {
-      fetchStarWikiSummary(selectedStar.proper).then((data) => {
+    // Try stars starting from today's index until we find one with a Wikipedia thumbnail
+    const tryNext = async (attempt: number) => {
+      if (attempt >= namedStars.length) { setIsLoading(false); return; }
+      const candidate = namedStars[(dayOfYear + attempt) % namedStars.length];
+      if (!candidate.proper) { tryNext(attempt + 1); return; }
+      const r = await fetch(`/api/wiki-summary?name=${encodeURIComponent(candidate.proper)}`);
+      const data = r.ok ? await r.json() : null;
+      if (data?.thumbnail) {
+        setStar(candidate);
         setWikiData(data);
         setIsLoading(false);
-      });
-    } else {
-      setIsLoading(false);
-    }
+      } else {
+        tryNext(attempt + 1);
+      }
+    };
+
+    tryNext(0);
   }, [namedStars]);
 
   // Only render if we have a valid star, and Wikipedia returned an extract

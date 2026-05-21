@@ -1,7 +1,10 @@
 import Link from 'next/link';
+import fs from 'fs';
+import path from 'path';
 import StarBackground from '@/components/StarBackground';
-import { fetchStarWikiSummary } from '@/lib/wikipedia';
+import { fetchStarWikiFullContent } from '@/lib/wikipedia';
 import StarDetailClient from '@/components/StarDetailClient';
+import { Star } from '@/types/star';
 
 // Force dynamic server-side rendering for this page to prevent build-time PageNotFoundError
 export const dynamic = 'force-dynamic';
@@ -12,7 +15,20 @@ export default async function StarDetailPage({
   params: { starName: string };
 }) {
   const decodedName = decodeURIComponent(params.starName);
-  const wikiData = await fetchStarWikiSummary(decodedName);
+  const wikiContent = await fetchStarWikiFullContent(decodedName);
+
+  // Load the named-stars.json to find matching star data
+  let starData: Star | null = null;
+  try {
+    const filePath = path.join(process.cwd(), 'public/data/named-stars.json');
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const namedStars: Star[] = JSON.parse(fileContent);
+    starData = namedStars.find(
+      (s) => s.proper?.toLowerCase() === decodedName.toLowerCase()
+    ) || null;
+  } catch (error) {
+    console.error('Failed to load named-stars.json', error);
+  }
 
   return (
     <main className="relative min-h-screen flex flex-col bg-[#040412]">
@@ -43,8 +59,12 @@ export default async function StarDetailPage({
         </header>
 
         {/* Content Area */}
-        <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
-          <StarDetailClient wikiData={wikiData} decodedName={decodedName} />
+        <div className="flex-1 flex flex-col items-center px-4 py-8">
+          <StarDetailClient
+            wikiContent={wikiContent}
+            starData={starData}
+            decodedName={decodedName}
+          />
         </div>
       </div>
     </main>
