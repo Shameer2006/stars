@@ -2,6 +2,9 @@
 
 > A free interactive web tool that writes your name across the night sky using real stars from the HYG Stellar Database.
 
+## Preview Image
+![Your Name in Stars](https://stars-n.vercel.app/og-image.png)
+
 ## About
 
 Your Name in Stars is a free online star name generator. Users type any name and see it visualized across the night sky, with each letter traced by a real star from the HYG Stellar Database. The database contains 8,700+ real stars with actual positions, magnitudes, and distances. Users can download their personalized star map as a PNG image, share via unique links, or generate QR codes.
@@ -39,6 +42,8 @@ Your Name in Stars is a free online star name generator. Users type any name and
 ## URLs
 
 - Homepage: https://stars-n.vercel.app
+- Preview Image: https://stars-n.vercel.app/og-image.png
+- Logo/Icon: https://stars-n.vercel.app/favicon.png
 - Star of the Day example: https://stars-n.vercel.app/star-of-the-day/Sirius
 - Sitemap: https://stars-n.vercel.app/sitemap.xml
 

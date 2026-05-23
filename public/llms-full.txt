@@ -80,8 +80,13 @@ Each day features a different named star with details about its constellation, d
 - **Rendering**: Static Site Generation (SSG) with ISR for star detail pages
 - **All 339 named star pages are pre-rendered as static HTML**
 
+## Preview Image
+![Your Name in Stars — Preview](https://stars-n.vercel.app/og-image.png)
+
 ## Site URLs
 - **Homepage**: https://stars-n.vercel.app
+- **Preview Image (1200×630)**: https://stars-n.vercel.app/og-image.png
+- **Logo/Icon (512×512)**: https://stars-n.vercel.app/favicon.png
 - **Sitemap**: https://stars-n.vercel.app/sitemap.xml
 - **Star pages**: https://stars-n.vercel.app/star-of-the-day/[StarName]
 - **Example stars**:
