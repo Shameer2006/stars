@@ -142,7 +142,7 @@ export default function StarDisplay({ results, tileWidth, tileHeight }: StarDisp
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: results.length * 0.08 + 0.3 }}
-        className="text-center mt-5 text-sm text-gray-500 font-cormorant tracking-wide"
+        className="text-center mt-5 text-sm text-gray-500 font-cormorant tracking-wide text-glow-subtle"
       >
         {results.filter(r => r.letter !== ' ').length} letters ·{' '}
         {totalStars} real stars mapped · HYG Stellar Database

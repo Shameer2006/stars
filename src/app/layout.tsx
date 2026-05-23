@@ -99,7 +99,7 @@ export const metadata: Metadata = {
     description:
       'Type your name and see it written across the night sky using real stars. Every letter traced by an actual star from our galaxy.',
     images: ['/og-image.png'],
-    creator: '@yournameinstars',
+    creator: '@stars_n',
   },
 
   robots: {

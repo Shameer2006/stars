@@ -168,7 +168,7 @@ export default function NameInput({
           </button>
         </div>
 
-        <p className="text-center text-gray-500 text-[10px] sm:text-xs mt-2 sm:mt-3 font-sans tracking-wide">
+        <p className="text-center text-gray-500 text-[10px] sm:text-xs mt-2 sm:mt-3 font-sans tracking-wide text-glow-subtle">
           Press Enter to see your name written in real stars
         </p>
       </motion.div>

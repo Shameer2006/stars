@@ -8,7 +8,7 @@ import StarDetailClient from '@/components/StarDetailClient';
 import JsonLd from '@/components/JsonLd';
 import { Star } from '@/types/star';
 
-const BASE_URL = 'https://yournameinstars.vercel.app';
+const BASE_URL = 'https://stars-n.vercel.app';
 
 // Use ISR — revalidate every 24 hours for fresh Wikipedia content while keeping pages cached/crawlable
 export const revalidate = 86400; // 24 hours

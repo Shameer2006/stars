@@ -91,12 +91,12 @@ function HomeContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-cinzel font-semibold tracking-wider px-4">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-cinzel font-semibold tracking-wider px-4 text-glow-gold">
               <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 bg-clip-text text-transparent">
                 Your Name in Stars
               </span>
             </h1>
-            <p className="mt-1.5 sm:mt-3 text-xs sm:text-sm md:text-base text-gray-400 font-cormorant tracking-wide max-w-lg mx-auto px-4 leading-relaxed">
+            <p className="mt-1.5 sm:mt-3 text-xs sm:text-sm md:text-base text-gray-400 font-cormorant tracking-wide max-w-lg mx-auto px-4 leading-relaxed text-glow-subtle">
               Every letter traced by a real star from the night sky.
               <br className="hidden md:block" />
               Your name has always been out there, written in light across the galaxy.
@@ -154,7 +154,7 @@ function HomeContent() {
         </div>
 
         {/* Footer */}
-        <footer className="text-center py-6 text-xs text-gray-400/70 font-cormorant tracking-wide">
+        <footer className="text-center py-6 text-xs text-gray-400/70 font-cormorant tracking-wide text-glow-subtle">
           <p>
             Star positions from the{' '}
             <a
@@ -167,7 +167,7 @@ function HomeContent() {
             </a>{' '}
             · CC BY-SA 4.0
           </p>
-          <p className="mt-1 text-gray-500/60">
+          <p className="mt-1 text-gray-500/60 text-glow-subtle">
             {allStars.length.toLocaleString()} real stars · {namedStars.length} named stars
           </p>
         </footer>
