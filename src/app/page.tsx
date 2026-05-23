@@ -155,7 +155,7 @@ function HomeContent() {
         </div>
         {/* SEO Content Section — visible, keyword-rich text for Google */}
         <section className="max-w-2xl mx-auto px-6 pb-8 text-center">
-          <p className="text-[11px] sm:text-xs text-gray-500/60 font-cormorant leading-relaxed tracking-wide text-glow-subtle">
+          <p className="text-[11px] sm:text-xs text-gray-400/80 font-cormorant leading-relaxed tracking-wide bg-black/40 backdrop-blur-sm rounded-lg px-5 py-4">
             Find your name written in stars using real stars from the HYG Stellar Database.
             Explore the night sky star map with your name, discover named stars like Sirius, Vega, and Polaris,
             and enjoy our daily Star of the Day feature. This free interactive star name generator
