@@ -9,6 +9,7 @@ import StarBackground from '@/components/StarBackground';
 import StarDisplay from '@/components/StarDisplay';
 import NameInput from '@/components/NameInput';
 import StarOfDay from '@/components/StarOfDay';
+import FAQ from '@/components/FAQ';
 
 const TILE_WIDTH = 220;
 const TILE_HEIGHT = 300;
@@ -164,6 +165,9 @@ function HomeContent() {
             and anyone curious about the universe — type any name and see it shine across the cosmos tonight.
           </p>
         </section>
+
+        {/* FAQ Section */}
+        <FAQ />
 
         {/* Footer */}
         <footer className="text-center py-6 text-xs text-gray-400/70 font-cormorant tracking-wide text-glow-subtle">
