@@ -24,43 +24,54 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
   title: {
-    default: 'Your Name in Stars — See Your Name Written in Real Stars from the Night Sky',
+    default: 'Your Name in Stars — Write Your Name in Real Stars | Free Star Name Generator',
     template: '%s | Your Name in Stars',
   },
 
   description:
-    'Type your name and watch it appear written across the night sky using real stars from the HYG Stellar Database. Each letter is traced by an actual star — a real sun in our galaxy. Free, beautiful, and shareable. Explore 8,700+ real stars, discover the Star of the Day, and share your name among the cosmos.',
+    'Find your name written in stars using real stars from the HYG Stellar Database. This free interactive star name generator lets you see your name in the galaxy, traced by actual stars like Sirius, Vega, and Polaris. Explore the night sky star map, discover named stars with our daily Star of the Day, and visualize stellar astronomy online. Perfect for space lovers and astronomy fans.',
 
   keywords: [
     'your name in stars',
     'name in stars',
+    'NASA name in stars',
+    'write name in stars',
     'write my name in stars',
     'see your name in stars',
     'name written in stars',
     'star name generator',
+    'name in the galaxy',
+    'name in constellations',
+    'name in the night sky',
     'real stars',
-    'stars with names',
-    'night sky name',
-    'astronomy',
+    'HYG Stellar Database',
     'HYG database',
-    'constellation',
-    'space',
-    'galaxy',
-    'star map',
-    'starfield',
+    'night sky star map',
+    'interactive star map',
+    'star map online',
+    'star visualization',
+    'visualize stars online',
+    'stellar astronomy',
     'star of the day',
+    'Sirius',
+    'Vega',
+    'Polaris',
+    'Betelgeuse',
     'named stars',
     'star names',
-    'personalized stars',
-    'night sky',
-    'celestial',
-    'cosmos',
-    'star visualization',
-    'interactive star map',
-    'stellar database',
-    'star chart',
-    'name a star',
+    'stars with names',
     'find my star',
+    'name a star free',
+    'personalized stars',
+    'star chart',
+    'astronomy online',
+    'space lover',
+    'cosmos',
+    'night sky',
+    'constellation',
+    'galaxy',
+    'celestial',
+    'free star tool',
   ],
 
   authors: [{ name: 'Your Name in Stars' }],
@@ -76,9 +87,9 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: 'Your Name in Stars ✨ — Written in Real Stars from the Night Sky',
+    title: 'Your Name in Stars ✨ — Write Your Name in Real Stars from the Night Sky',
     description:
-      'Type your name and see it written across the night sky using 8,700+ real stars from the HYG Stellar Database. Every star is a real sun in our galaxy. Free & shareable.',
+      'Free star name generator — type your name and see it written across the night sky using 8,700+ real stars from the HYG Stellar Database. Explore named stars like Sirius, Vega, and Polaris.',
     url: BASE_URL,
     siteName: 'Your Name in Stars',
     images: [
@@ -86,7 +97,7 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Your Name in Stars — see your name written across the night sky with real stars',
+        alt: 'Your Name in Stars — write your name across the night sky with real stars from the HYG Stellar Database',
       },
     ],
     locale: 'en_US',
@@ -95,9 +106,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: 'Your Name in Stars ✨ — Written in Real Stars',
+    title: 'Your Name in Stars ✨ — Free Star Name Generator',
     description:
-      'Type your name and see it written across the night sky using real stars. Every letter traced by an actual star from our galaxy.',
+      'Write your name in real stars from the HYG Stellar Database. Explore named stars like Sirius, Vega, and Polaris. Free interactive night sky star map.',
     images: ['/og-image.png'],
     creator: '@stars_n',
   },
@@ -191,15 +202,23 @@ export default function RootLayout({
                 name: 'How does Your Name in Stars work?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Your Name in Stars uses the HYG Stellar Database containing 8,700+ real stars. When you type your name, each letter is mapped to a real star\'s position in the night sky, creating a unique celestial visualization of your name.',
+                  text: 'Your Name in Stars is a free star name generator that uses the HYG Stellar Database containing 8,700+ real stars. When you type your name, each letter is mapped to a real star\'s position in the night sky, creating a unique celestial visualization. Unlike naming a star, this tool traces your name using actual stars from our galaxy — similar to NASA\'s Your Name tools but using real stellar positions.',
                 },
               },
               {
                 '@type': 'Question',
-                name: 'Are these real stars?',
+                name: 'Are these real stars from the night sky?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Yes! Every star shown is a real star cataloged in the HYG Stellar Database. The database includes stars like Sirius, Vega, Polaris, and thousands more, with their actual positions, magnitudes, and distances from Earth.',
+                  text: 'Yes! Every star shown is a real star cataloged in the HYG Stellar Database. The database includes famous named stars like Sirius, Vega, Polaris, Betelgeuse, and thousands more, with their actual right ascension, declination, magnitudes, and distances from Earth. You can explore each star\'s properties and constellation.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Is this like NASA Your Name in Landsat?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'While NASA\'s Your Name in Landsat writes your name using satellite imagery of Earth, Your Name in Stars writes your name using real stars from the night sky. Both are free tools that create personalized visualizations, but our tool uses stellar astronomy data from the HYG database to trace each letter with actual stars in space.',
                 },
               },
               {
@@ -207,7 +226,7 @@ export default function RootLayout({
                 name: 'Can I share my name in stars?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Absolutely! After typing your name, you can share it via a unique link, download it as an image, or copy a QR code. The link will show your name written in the same stars to anyone who opens it.',
+                  text: 'Absolutely! After typing your name, you can share it via a unique link, download it as a high-resolution PNG image, or copy a QR code. The shared link will show your name written in the same real stars to anyone who opens it.',
                 },
               },
               {
@@ -215,7 +234,15 @@ export default function RootLayout({
                 name: 'What is the Star of the Day?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Each day, we feature a different named star from our database with details about its constellation, distance, brightness, and Wikipedia information. There are hundreds of named stars to discover!',
+                  text: 'Each day, we feature a different named star from our database — stars like Sirius, Vega, Polaris, Betelgeuse, Altair, and more — with details about its constellation, distance in light-years, brightness magnitude, and Wikipedia information. There are over 300 named stars to discover!',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What stars can I explore on this site?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'You can explore over 8,700 real stars from the HYG Stellar Database, including 339 named stars such as Sirius (the brightest star), Polaris (the North Star), Vega, Betelgeuse, Rigel, Aldebaran, Antares, Deneb, and many more. Each named star has its own detail page with astronomical data and Wikipedia information.',
                 },
               },
             ],

@@ -96,10 +96,10 @@ function HomeContent() {
                 Your Name in Stars
               </span>
             </h1>
-            <p className="mt-1.5 sm:mt-3 text-xs sm:text-sm md:text-base text-gray-400 font-cormorant tracking-wide max-w-lg mx-auto px-4 leading-relaxed text-glow-subtle">
-              Every letter traced by a real star from the night sky.
+            <p className="mt-1.5 sm:mt-3 text-xs sm:text-sm md:text-base text-gray-400 font-cormorant tracking-wide max-w-xl mx-auto px-4 leading-relaxed text-glow-subtle">
+              A free star name generator — every letter traced by a real star from the
               <br className="hidden md:block" />
-              Your name has always been out there, written in light across the galaxy.
+              HYG Stellar Database. See your name written in the night sky.
             </p>
           </motion.div>
         </header>
@@ -152,6 +152,18 @@ function HomeContent() {
             isLoading={isLoading}
           />
         </div>
+        {/* SEO Content Section — visible, keyword-rich text for Google */}
+        <section className="max-w-2xl mx-auto px-6 pb-8 text-center">
+          <p className="text-[11px] sm:text-xs text-gray-500/60 font-cormorant leading-relaxed tracking-wide text-glow-subtle">
+            Find your name written in stars using real stars from the HYG Stellar Database.
+            Explore the night sky star map with your name, discover named stars like Sirius, Vega, and Polaris,
+            and enjoy our daily Star of the Day feature. This free interactive star name generator
+            lets you see your name in the galaxy traced by actual stars in space.
+            Search your name in constellations, visualize stellar astronomy online,
+            and explore NASA-style star maps. Perfect for space lovers, astronomy fans,
+            and anyone curious about the universe — type any name and see it shine across the cosmos tonight.
+          </p>
+        </section>
 
         {/* Footer */}
         <footer className="text-center py-6 text-xs text-gray-400/70 font-cormorant tracking-wide text-glow-subtle">
