@@ -10,6 +10,7 @@ import StarDisplay from '@/components/StarDisplay';
 import NameInput from '@/components/NameInput';
 import StarOfDay from '@/components/StarOfDay';
 import FAQ from '@/components/FAQ';
+import Footer from '@/components/Footer';
 
 const TILE_WIDTH = 220;
 const TILE_HEIGHT = 300;
@@ -170,23 +171,7 @@ function HomeContent() {
         <FAQ />
 
         {/* Footer */}
-        <footer className="text-center py-6 text-xs text-gray-400/70 font-cormorant tracking-wide text-glow-subtle">
-          <p>
-            Star positions from the{' '}
-            <a
-              href="https://www.astronexus.com/projects/hyg"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-amber-400/50 hover:text-amber-400 transition-colors underline underline-offset-2"
-            >
-              HYG Stellar Database
-            </a>{' '}
-            · CC BY-SA 4.0
-          </p>
-          <p className="mt-1 text-gray-500/60 text-glow-subtle">
-            {allStars.length.toLocaleString()} real stars · {namedStars.length} named stars
-          </p>
-        </footer>
+        <Footer />
       </div>
     </main>
   );
