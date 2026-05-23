@@ -35,6 +35,13 @@ export default function IntroVideo() {
 
   const handleComplete = () => {
     setIsFadingOut(true);
+    if (videoRef.current) {
+      try {
+        videoRef.current.pause();
+      } catch (err) {
+        console.error('Failed to pause video during transition:', err);
+      }
+    }
     setTimeout(() => {
       setShowIntro(false);
       sessionStorage.setItem('introPlayed', 'true');
@@ -60,6 +67,7 @@ export default function IntroVideo() {
               className="absolute inset-0 w-full h-full object-cover"
               muted
               playsInline
+              preload="auto"
             />
           )}
         </motion.div>

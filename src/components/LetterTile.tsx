@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, memo } from 'react';
 import { MappedStar } from '@/types/star';
 import { renderTileFrame } from '@/lib/canvas';
 
@@ -14,9 +14,10 @@ interface LetterTileProps {
 }
 
 /**
- * Individual letter canvas tile with twinkling star animation.
+ * Individual letter canvas tile.
+ * Optimized to render statically since twinkling is disabled, eliminating high idle CPU usage.
  */
-export default function LetterTile({
+export default memo(function LetterTile({
   letter,
   stars,
   bgStars,
@@ -25,7 +26,6 @@ export default function LetterTile({
   onStarHover,
 }: LetterTileProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animRef = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -45,17 +45,9 @@ export default function LetterTile({
     const scaleX = width / 220;
     const scaleY = height / 300;
 
-    const animate = (time: number) => {
-      ctx.setTransform(dpr * scaleX, 0, 0, dpr * scaleY, 0, 0);
-      renderTileFrame(ctx, 220, 300, stars, bgStars, letter, time);
-      animRef.current = requestAnimationFrame(animate);
-    };
-
-    animRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      cancelAnimationFrame(animRef.current);
-    };
+    // Draw frame exactly once on component mount or prop change
+    ctx.setTransform(dpr * scaleX, 0, 0, dpr * scaleY, 0, 0);
+    renderTileFrame(ctx, 220, 300, stars, bgStars, letter, Date.now());
   }, [letter, stars, bgStars, width, height]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -102,4 +94,4 @@ export default function LetterTile({
       onMouseLeave={handleMouseLeave}
     />
   );
-}
+});

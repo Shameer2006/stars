@@ -34,16 +34,30 @@ export default function StarDisplay({ results, tileWidth, tileHeight }: StarDisp
     []
   );
 
-  // Measure available width
+  // Measure available width with debouncing to prevent layout thrashing on resize
   useEffect(() => {
-    const measure = () => {
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.clientWidth);
-      }
+    if (typeof window === 'undefined') return;
+
+    let resizeTimer: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (containerRef.current) {
+          setContainerWidth(containerRef.current.clientWidth);
+        }
+      }, 100);
     };
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
+
+    // Measure initially
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.clientWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimer);
+    };
   }, []);
 
   // Calculate tile dimensions to fit all tiles in one row
