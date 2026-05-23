@@ -4,6 +4,8 @@ import IntroVideo from '@/components/IntroVideo';
 import JsonLd from '@/components/JsonLd';
 import './globals.css';
 
+
+
 const cinzel = Cinzel({
   subsets: ['latin'],
   variable: '--font-cinzel',
@@ -221,6 +223,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cinzel.variable} ${cormorant.variable}`}>
       <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1006713173738488"
+          crossOrigin="anonymous"
+        />
         {/* JSON-LD: WebApplication structured data for rich results */}
         <JsonLd
           data={{
