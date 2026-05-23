@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Cinzel, Cormorant_Garamond } from 'next/font/google';
 import IntroVideo from '@/components/IntroVideo';
 import JsonLd from '@/components/JsonLd';
+import CookieConsent from '@/components/CookieConsent';
 import './globals.css';
 
 
@@ -223,6 +224,22 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cinzel.variable} ${cormorant.variable}`}>
       <head>
+        {/* Google Consent Mode v2 — default deny BEFORE any Google tags */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied',
+                'wait_for_update': 500
+              });
+            `,
+          }}
+        />
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1006713173738488"
@@ -334,6 +351,7 @@ export default function RootLayout({
       <body className="bg-[#040412] text-white min-h-screen antialiased overflow-x-hidden">
         <IntroVideo />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );
