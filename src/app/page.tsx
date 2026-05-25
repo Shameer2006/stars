@@ -32,7 +32,27 @@ function HomeContent() {
           fetch('/data/stars.json'),
           fetch('/data/named-stars.json'),
         ]);
-        const starsData = await starsRes.json();
+              const rawStarsData = await starsRes.json();
+        type CompactStar = [
+          number, // id
+          number, // ra
+          number, // dec
+          number, // mag
+          number, // dist
+          number | null, // ci
+          string | null, // proper
+          string | null // con
+        ];
+        const starsData = rawStarsData.map((s: CompactStar) => ({
+          id: s[0],
+          ra: s[1],
+          dec: s[2],
+          mag: s[3],
+          dist: s[4],
+          ci: s[5] ?? undefined,
+          proper: s[6] ?? undefined,
+          con: s[7] ?? undefined,
+        }));
         const namedData = await namedRes.json();
         setAllStars(starsData);
         setNamedStars(namedData);

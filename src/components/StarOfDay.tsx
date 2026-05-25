@@ -77,6 +77,7 @@ export default function StarOfDay({ namedStars }: StarOfDayProps) {
               <img 
                 src={wikiData.thumbnail.source} 
                 alt={star.proper}
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             </div>

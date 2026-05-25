@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Cinzel, Cormorant_Garamond } from 'next/font/google';
+import Script from 'next/script';
 import IntroVideo from '@/components/IntroVideo';
 import JsonLd from '@/components/JsonLd';
 import CookieConsent from '@/components/CookieConsent';
@@ -240,10 +241,11 @@ export default function RootLayout({
             `,
           }}
         />
-        <script
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1006713173738488"
           crossOrigin="anonymous"
+          strategy="afterInteractive"
         />
         {/* JSON-LD: WebApplication structured data for rich results */}
         <JsonLd

@@ -1,20 +1,22 @@
 'use client';
 
+import Image from 'next/image';
+
 /**
  * Full-viewport space background using the nebula photograph.
- * Replaces the canvas-based starfield with a static image for a richer look.
+ * Optimized with Next.js Image component for instant loading and compressed formats.
  */
 export default function StarBackground() {
   return (
-    <div
-      className="fixed inset-0 z-0"
-      style={{
-        backgroundImage: 'url(/space-bg.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
+    <div className="fixed inset-0 z-0 select-none pointer-events-none">
+      <Image
+        src="/space-bg.png"
+        alt="Starry space background"
+        fill
+        priority
+        quality={75}
+        className="object-cover"
+      />
       {/* Dark overlay to ensure text/UI readability */}
       <div
         className="absolute inset-0"

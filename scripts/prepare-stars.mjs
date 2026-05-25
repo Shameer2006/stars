@@ -142,9 +142,19 @@ async function main() {
   const stars = parseCSV(csvText);
   console.log(`Parsed ${stars.length} stars (mag < 6.5)`);
 
-  // Write full star list
+  // Write full star list (compact array format)
   const starsPath = join(DATA_DIR, 'stars.json');
-  writeFileSync(starsPath, JSON.stringify(stars));
+  const compactStars = stars.map(s => [
+    s.id,
+    Math.round(s.ra * 1000) / 1000, // 3 decimal places for RA
+    Math.round(s.dec * 100) / 100,  // 2 decimal places for Dec
+    Math.round(s.mag * 10) / 10,    // 1 decimal place for Magnitude
+    s.dist, // already rounded to 1 decimal place
+    s.ci !== undefined ? s.ci : null,
+    s.proper || null,
+    s.con || null
+  ]);
+  writeFileSync(starsPath, JSON.stringify(compactStars));
   const sizeMB = (readFileSync(starsPath).length / 1024 / 1024).toFixed(2);
   console.log(`Written: ${starsPath} (${sizeMB} MB, ${stars.length} stars)`);
 

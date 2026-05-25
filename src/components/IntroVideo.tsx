@@ -35,6 +35,13 @@ export default function IntroVideo() {
 
   useEffect(() => {
     if (showIntro === true && videoRef.current) {
+      // Explicitly load the video since preload="none" was set
+      try {
+        videoRef.current.load();
+      } catch (err) {
+        console.warn('Failed to load video:', err);
+      }
+
       // Try to play the video
       videoRef.current.play().catch((err) => {
         // Log as a warning instead of error to prevent triggering Google Search Console or Sentry alerts
@@ -89,7 +96,7 @@ export default function IntroVideo() {
               className="absolute inset-0 w-full h-full object-cover"
               muted
               playsInline
-              preload="auto"
+              preload="none"
               onError={() => {
                 console.warn('Video failed to load/play, skipping intro.');
                 handleComplete();
