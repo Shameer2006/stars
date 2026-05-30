@@ -88,7 +88,7 @@ export default function FAQ() {
       {/* Section title */}
       <div className="text-center mb-6">
         <h2 className="text-sm sm:text-base font-cinzel tracking-[0.2em] uppercase text-amber-400/70 text-glow-subtle">
-          Frequently Asked
+          Your Name in Stars FAQ
         </h2>
         <div className="mt-2 mx-auto w-16 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
       </div>

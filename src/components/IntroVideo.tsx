@@ -14,7 +14,7 @@ export default function IntroVideo() {
       const isBot = /bot|google|baidu|bing|msn|duckduckgo|teoma|slurp|yandex|lighthouse|inspection/i.test(
         navigator.userAgent
       );
-      
+
       if (isBot) {
         // Skip intro completely for crawlers/bots to optimize SEO indexing and Core Web Vitals
         return;
@@ -52,7 +52,7 @@ export default function IntroVideo() {
       // Stop the video after exactly 5 seconds
       const timer = setTimeout(() => {
         handleComplete();
-      }, 5000);
+      }, 3000);
 
       return () => clearTimeout(timer);
     }

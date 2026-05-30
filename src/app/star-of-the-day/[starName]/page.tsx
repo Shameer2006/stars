@@ -21,7 +21,7 @@ export async function generateStaticParams() {
     return namedStars
       .filter((s) => s.proper)
       .map((s) => ({
-        starName: encodeURIComponent(s.proper!),
+        starName: s.proper!,
       }));
   } catch {
     return [];
