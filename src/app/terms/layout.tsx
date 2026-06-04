@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     'Terms of Service for Your Name in Stars — read the terms governing use of our free star name generator.',
   alternates: {
-    canonical: 'https://stars-n.vercel.app/terms',
+    canonical: 'https://your-name-in-stars.vercel.app/terms',
   },
 };
 

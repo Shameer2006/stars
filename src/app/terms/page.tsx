@@ -13,8 +13,8 @@ export default function TermsPage() {
         <h2>1. Acceptance of Terms</h2>
         <p>
           By accessing or using <strong>Your Name in Stars</strong> (the &ldquo;Service&rdquo;), available at{' '}
-          <a href="https://stars-n.vercel.app" target="_blank" rel="noopener noreferrer">
-            stars-n.vercel.app
+          <a href="https://your-name-in-stars.vercel.app" target="_blank" rel="noopener noreferrer">
+            your-name-in-stars.vercel.app
           </a>
           , you agree to be bound by these Terms of Service (&ldquo;Terms&rdquo;). If you do not agree to these
           Terms, please do not use the Service.

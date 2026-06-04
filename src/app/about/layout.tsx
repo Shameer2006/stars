@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     'Learn about Your Name in Stars — a free interactive tool that writes your name using real stars from the HYG Stellar Database.',
   alternates: {
-    canonical: 'https://stars-n.vercel.app/about',
+    canonical: 'https://your-name-in-stars.vercel.app/about',
   },
 };
 

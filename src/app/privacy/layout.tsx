@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     'Privacy Policy for Your Name in Stars — learn how we handle your data when you use our free star name generator.',
   alternates: {
-    canonical: 'https://stars-n.vercel.app/privacy',
+    canonical: 'https://your-name-in-stars.vercel.app/privacy',
   },
 };
 

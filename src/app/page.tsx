@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     'Find your name written in stars using real stars from the HYG Stellar Database. This free interactive star name generator lets you see your name in the galaxy, traced by actual stars like Sirius, Vega, and Polaris. Explore the night sky star map, discover named stars with our daily Star of the Day, and visualize stellar astronomy online. Perfect for space lovers and astronomy fans.',
   alternates: {
-    canonical: 'https://stars-n.vercel.app',
+    canonical: 'https://your-name-in-stars.vercel.app',
   },
 };
 
@@ -47,12 +47,11 @@ export default function HomePage() {
           </h2>
           <p className="text-[11px] sm:text-xs text-gray-400/80 font-cormorant leading-relaxed tracking-wide bg-black/40 backdrop-blur-sm rounded-lg px-5 py-4">
             Find your name written in stars using real stars from the HYG Stellar Database.
-            Explore the night sky star map with your name, discover named stars like Sirius, Vega, and Polaris,
-            and enjoy our daily Star of the Day feature. This free interactive star name generator
-            lets you see your name in the galaxy traced by actual stars in space.
-            Search your name in constellations, visualize stellar astronomy online,
-            and explore NASA-style star maps. Perfect for space lovers, astronomy fans,
-            and anyone curious about the universe — type any name and see it shine across the cosmos tonight.
+            As a 100% free alternative to commercial star registries and paid star naming services,
+            this interactive star name generator lets you see your name in the galaxy, traced by actual stars in space like Sirius, Vega, and Polaris.
+            Explore the night sky star map with your name, discover constellations, visualize stellar astronomy online,
+            and enjoy our daily Star of the Day feature. Perfect for space lovers, astronomy fans,
+            and anyone looking for a unique, free personalized space gift — type any name to see it shine across the cosmos tonight.
           </p>
         </section>
 

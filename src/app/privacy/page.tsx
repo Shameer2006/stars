@@ -14,8 +14,8 @@ export default function PrivacyPage() {
         <p>
           Welcome to <strong>Your Name in Stars</strong> (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;). This Privacy Policy
           explains how we collect, use, and protect your information when you visit our website at{' '}
-          <a href="https://stars-n.vercel.app" target="_blank" rel="noopener noreferrer">
-            stars-n.vercel.app
+          <a href="https://your-name-in-stars.vercel.app" target="_blank" rel="noopener noreferrer">
+            your-name-in-stars.vercel.app
           </a>{' '}
           (the &ldquo;Service&rdquo;).
         </p>

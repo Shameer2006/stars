@@ -22,7 +22,7 @@ const cormorant = Cormorant_Garamond({
   weight: ['300', '400', '500', '600'],
 });
 
-const BASE_URL = 'https://stars-n.vercel.app';
+const BASE_URL = 'https://your-name-in-stars.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -344,6 +344,14 @@ export default function RootLayout({
                 acceptedAnswer: {
                   '@type': 'Answer',
                   text: 'You can explore over 8,700 real stars from the HYG Stellar Database, including 339 named stars such as Sirius (the brightest star), Polaris (the North Star), Vega, Betelgeuse, Rigel, Aldebaran, Antares, Deneb, and many more. Each named star has its own detail page with astronomical data and Wikipedia information.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'Can I buy or name a star for free on this website?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Yes! While commercial star registries charge money to name a star, we offer a completely free alternative. Instead of paying to register a star\'s name in a private list, Your Name in Stars allows you to write any name across the actual night sky using real stars from the HYG Stellar Database. You can download and print a high-resolution star name map to use as a personalized space gift, with no fees or signup required.',
                 },
               },
             ],

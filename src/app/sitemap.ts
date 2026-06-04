@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { Star } from '@/types/star';
 
-const BASE_URL = 'https://stars-n.vercel.app';
+const BASE_URL = 'https://your-name-in-stars.vercel.app';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = [

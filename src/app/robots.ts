@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://stars-n.vercel.app';
+const BASE_URL = 'https://your-name-in-stars.vercel.app';
 
 export default function robots(): MetadataRoute.Robots {
   return {
