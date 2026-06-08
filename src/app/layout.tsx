@@ -241,12 +241,11 @@ export default function RootLayout({
             `,
           }}
         />
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1006713173738488"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        ></script>
         {/* JSON-LD: WebApplication structured data for rich results */}
         <JsonLd
           data={{
