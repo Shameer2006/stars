@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Cinzel, Cormorant_Garamond } from 'next/font/google';
-import Script from 'next/script';
 import IntroVideo from '@/components/IntroVideo';
 import JsonLd from '@/components/JsonLd';
 import CookieConsent from '@/components/CookieConsent';
