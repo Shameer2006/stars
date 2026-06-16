@@ -10,9 +10,9 @@ interface FAQItem {
 
 const faqData: FAQItem[] = [
   {
-    question: 'How does Your Name in Stars work?',
+    question: 'How does Your Name in the Stars work?',
     answer:
-      'Your Name in Stars is a free star name generator that uses the HYG Stellar Database containing 8,700+ real stars. When you type your name, each letter is mapped to a real star\'s position in the night sky, creating a unique celestial visualization of your name.',
+      'Your Name in the Stars is a free online tool that uses an intergalactic star database containing 8,700+ real stars. When you type your name, each letter is mapped to a real star\'s position in the night sky, creating a unique celestial visualization to see your name in galaxy.',
   },
   {
     question: 'Are these real stars from the night sky?',
@@ -35,14 +35,14 @@ const faqData: FAQItem[] = [
       'Each day, we feature a different named star from our database — stars like Sirius, Vega, Polaris, Betelgeuse, Altair, and more — with details about its constellation, distance in light-years, brightness magnitude, and Wikipedia information. There are over 300 named stars to discover!',
   },
   {
-    question: 'What stars can I explore?',
+    question: 'Is there an intergalactic star database I can explore?',
     answer:
-      'You can explore over 8,700 real stars from the HYG Stellar Database, including 339 named stars such as Sirius (the brightest star), Polaris (the North Star), Vega, Betelgeuse, Rigel, Aldebaran, Antares, Deneb, and many more. Each named star has its own detail page with astronomical data.',
+      'Yes! You can explore our intergalactic star database featuring over 8,700 real stars from the HYG Stellar Database, including 339 named stars such as Sirius (the brightest star), Polaris (the North Star), Vega, Betelgeuse, Rigel, Aldebaran, Antares, Deneb, and many more. Each named star has its own detail page with astronomical data.',
   },
   {
-    question: 'Can I buy or name a star for free on this website?',
+    question: 'Can I name a star for free online?',
     answer:
-      'Yes! While commercial star registries charge money to name a star, we offer a completely free alternative. Instead of paying to register a star\'s name in a private list, Your Name in Stars allows you to write any name across the actual night sky using real stars from the HYG Stellar Database. You can download and print a high-resolution star name map to use as a personalized space gift, with no fees or signup required.',
+      'Yes! If you are looking to name a star for free online, we offer a completely free alternative. Instead of paying commercial star registries, Your Name in the Stars allows you to write any name across the actual night sky using real stars from our intergalactic star database. You can download and print a high-resolution star name map to use as a personalized space gift, with no fees or signup required.',
   },
 ];
 
@@ -93,7 +93,7 @@ export default function FAQ() {
       {/* Section title */}
       <div className="text-center mb-6">
         <h2 className="text-sm sm:text-base font-cinzel tracking-[0.2em] uppercase text-amber-400/70 text-glow-subtle">
-          Your Name in Stars FAQ
+          Your Name in the Stars FAQ
         </h2>
         <div className="mt-2 mx-auto w-16 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
       </div>

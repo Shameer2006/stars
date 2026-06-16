@@ -27,12 +27,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
   title: {
-    default: 'Your Name in Stars — Write Your Name in Real Stars | Free Star Name Generator',
-    template: '%s | Your Name in Stars',
+    default: 'Your Name in the Stars — Name a Star for Free Online & See Your Name in Galaxy',
+    template: '%s | Your Name in the Stars',
   },
 
   description:
-    'Find your name written in stars using real stars from the HYG Stellar Database. This free interactive star name generator lets you see your name in the galaxy, traced by actual stars like Sirius, Vega, and Polaris. Explore the night sky star map, discover named stars with our daily Star of the Day, and visualize stellar astronomy online. Perfect for space lovers and astronomy fans.',
+    'Find your name in the stars using real stars from the HYG Stellar Database. This free online interactive generator lets you see your name in galaxy, traced by actual stars. Name a star for free online, explore our intergalactic star database, and discover named stars with our daily Star of the Day.',
 
   keywords: [
     'your name in stars',
@@ -165,9 +165,9 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: 'Your Name in Stars ✨ — Write Your Name in Real Stars from the Night Sky',
+    title: 'Your Name in the Stars ✨ — Name a Star for Free Online & See Your Name in Galaxy',
     description:
-      'Free star name generator — type your name and see it written across the night sky using 8,700+ real stars from the HYG Stellar Database. Explore named stars like Sirius, Vega, and Polaris.',
+      'Free star name generator — type your name and see your name in galaxy using 8,700+ real stars from the HYG Stellar Database. Name a star for free online today.',
     url: BASE_URL,
     siteName: 'Your Name in Stars',
     images: [
@@ -184,9 +184,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: 'Your Name in Stars ✨ — Free Star Name Generator',
+    title: 'Your Name in the Stars ✨ — Name a Star for Free Online',
     description:
-      'Write your name in real stars from the HYG Stellar Database. Explore named stars like Sirius, Vega, and Polaris. Free interactive night sky star map.',
+      'See your name in the stars and galaxy using our intergalactic star database. A completely free interactive night sky star map.',
     images: ['/og-image.png'],
     creator: '@stars_n',
   },
@@ -250,10 +250,10 @@ export default function RootLayout({
           data={{
             '@context': 'https://schema.org',
             '@type': 'WebApplication',
-            name: 'Your Name in Stars',
+            name: 'Your Name in the Stars',
             url: BASE_URL,
             description:
-              'Type your name and see it written across the night sky using real stars from the HYG Stellar Database. Every star is a real sun in our galaxy.',
+              'Type your name and see your name in the stars using real stars from our intergalactic star database. Name a star for free online.',
             applicationCategory: 'Entertainment',
             operatingSystem: 'Web',
             browserRequirements: 'Requires JavaScript',
@@ -346,10 +346,10 @@ export default function RootLayout({
               },
               {
                 '@type': 'Question',
-                name: 'Can I buy or name a star for free on this website?',
+                name: 'Can I name a star for free online?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Yes! While commercial star registries charge money to name a star, we offer a completely free alternative. Instead of paying to register a star\'s name in a private list, Your Name in Stars allows you to write any name across the actual night sky using real stars from the HYG Stellar Database. You can download and print a high-resolution star name map to use as a personalized space gift, with no fees or signup required.',
+                  text: 'Yes! If you are looking to name a star for free online, we offer a completely free alternative. Instead of paying commercial star registries, Your Name in the Stars allows you to write any name across the actual night sky using real stars from our intergalactic star database. You can download and print a high-resolution star name map to use as a personalized space gift, with no fees or signup required.',
                 },
               },
             ],
