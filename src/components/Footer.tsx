@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const footerLinks = [
+  { label: 'Learn', href: '/learn' },
+  { label: 'How it Works', href: '/how-it-works' },
   { label: 'About', href: '/about' },
   { label: 'Privacy Policy', href: '/privacy' },
   { label: 'Terms of Service', href: '/terms' },

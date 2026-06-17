@@ -29,6 +29,9 @@ export default function AboutPage() {
           right ascension and declination — creating an authentic representation of your name
           drawn by the cosmos.
         </p>
+        <p>
+          We use a stereographic projection to accurately map these 3D celestial coordinates onto your 2D screen, ensuring that the relative angles and distances between the stars are preserved. Want to know the technical details? <a href="/how-it-works">Read our full guide on how the algorithm works.</a>
+        </p>
         <ul>
           <li>
             <strong>8,700+ real stars</strong> from the HYG Stellar Database
@@ -47,31 +50,21 @@ export default function AboutPage() {
       </section>
 
       <section className="legal-section">
-        <h2>The Data</h2>
+        <h2>The Data & Education</h2>
         <p>
           All star positions are sourced from the{' '}
           <a
-            href="https://www.astronexus.com/projects/hyg"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/learn/hyg-stellar-database"
           >
             HYG Stellar Database
           </a>
           , a compilation of star data from the Hipparcos, Yale Bright Star, and Gliese catalogs.
-          The database is freely available under the{' '}
-          <a
-            href="https://creativecommons.org/licenses/by-sa/4.0/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Creative Commons Attribution-ShareAlike 4.0
-          </a>{' '}
-          license.
+          The database is freely available under the Creative Commons Attribution-ShareAlike 4.0 license.
         </p>
         <p>
           Each star carries real astronomical properties including its proper name (if one exists),
           apparent magnitude (brightness), distance in parsecs, right ascension, declination,
-          spectral classification, and constellation membership.
+          spectral classification, and constellation membership. We believe this tool can be a great entry point into astronomy. Be sure to check out our <a href="/learn">Astronomy Articles</a> to learn more about the history of star naming, the brightest stars, and how to navigate the night sky.
         </p>
       </section>
 

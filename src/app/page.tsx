@@ -41,18 +41,23 @@ export default function HomePage() {
         <StarAppClient />
 
         {/* SEO Content Section — visible, keyword-rich text for Google */}
-        <section className="max-w-2xl mx-auto px-6 pb-8 text-center">
-          <h2 className="text-sm sm:text-base font-cinzel tracking-[0.2em] uppercase text-amber-400/70 text-glow-subtle mb-3">
+        <section className="max-w-3xl mx-auto px-6 pb-12 text-center sm:text-left">
+          <h2 className="text-sm sm:text-base font-cinzel tracking-[0.2em] uppercase text-amber-400/70 text-glow-subtle mb-4 text-center">
             About Your Name in the Stars
           </h2>
-          <p className="text-[11px] sm:text-xs text-gray-400/80 font-cormorant leading-relaxed tracking-wide bg-black/40 backdrop-blur-sm rounded-lg px-5 py-4">
-            Find your name in the stars using real stars from the HYG Stellar Database.
-            As a 100% free alternative to commercial star registries and paid star naming services,
-            this interactive generator lets you see your name in galaxy, traced by actual stars.
-            If you want to name a star for free online, explore our intergalactic star database, visualize stellar astronomy online,
-            and enjoy our daily Star of the Day feature. Perfect for space lovers, astronomy fans,
-            and anyone looking for a unique, free personalized space gift — type any name to see it shine across the cosmos tonight.
-          </p>
+          <div className="bg-black/40 backdrop-blur-sm rounded-xl px-6 py-6 border border-white/[0.04] space-y-4">
+            <p className="text-[12px] sm:text-[13px] text-gray-300 font-cormorant leading-relaxed tracking-wide">
+              <strong>Your Name in the Stars</strong> is an educational and interactive tool that bridges the gap between scientific astronomical data and personal connection. By utilizing the renowned HYG Stellar Database, we allow you to explore the cosmos in a uniquely personal way. When you type a name, our algorithm doesn&apos;t just generate a random pattern; it maps each letter to the exact Right Ascension and Declination coordinates of real, physical stars burning in our galaxy.
+            </p>
+            <p className="text-[12px] sm:text-[13px] text-gray-300 font-cormorant leading-relaxed tracking-wide">
+              Unlike commercial star registries that charge money to &quot;officially&quot; name a star—a practice not recognized by the International Astronomical Union—our tool serves as a 100% free, educational alternative. It is designed to spark curiosity about astronomy, allowing you to visualize celestial mechanics, understand apparent magnitudes, and learn the names of prominent stars like Sirius, Vega, and Betelgeuse.
+            </p>
+            <p className="text-[12px] sm:text-[13px] text-gray-300 font-cormorant leading-relaxed tracking-wide text-center pt-2">
+              Want to dive deeper into the science of the stars? <br />
+              <a href="/learn" className="text-amber-400/80 hover:text-amber-300 underline underline-offset-4 decoration-amber-400/30 mr-4">Explore our Astronomy Articles</a>
+              <a href="/how-it-works" className="text-amber-400/80 hover:text-amber-300 underline underline-offset-4 decoration-amber-400/30">Learn How the Algorithm Works</a>
+            </p>
+          </div>
         </section>
 
         {/* FAQ Section */}
