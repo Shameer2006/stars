@@ -1,4 +1,13 @@
+import type { Metadata } from 'next';
 import LegalPageLayout from '@/components/LegalPageLayout';
+
+export const metadata: Metadata = {
+  title: 'Understanding Celestial Coordinates | Your Name in Stars',
+  description: 'What are Right Ascension and Declination? A beginner\'s guide to navigating the night sky and the celestial sphere.',
+  alternates: {
+    canonical: 'https://your-name-in-stars.vercel.app/learn/understanding-coordinates',
+  },
+};
 
 export default function CelestialCoordinatesPage() {
   return (

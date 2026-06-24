@@ -1,4 +1,13 @@
+import type { Metadata } from 'next';
 import LegalPageLayout from '@/components/LegalPageLayout';
+
+export const metadata: Metadata = {
+  title: 'A Guide to the Brightest Stars | Your Name in Stars',
+  description: 'Explore the most luminous stars in our night sky, including Sirius, Canopus, and Arcturus. Learn about the apparent magnitude scale used by astronomers.',
+  alternates: {
+    canonical: 'https://your-name-in-stars.vercel.app/learn/brightest-stars',
+  },
+};
 
 export default function BrightestStarsPage() {
   return (

@@ -1,4 +1,13 @@
+import type { Metadata } from 'next';
 import LegalPageLayout from '@/components/LegalPageLayout';
+
+export const metadata: Metadata = {
+  title: 'The History of Star Naming | Your Name in Stars',
+  description: 'Discover how stars got their names, from ancient civilizations and mythology to modern astronomical catalogs like the HYG database.',
+  alternates: {
+    canonical: 'https://your-name-in-stars.vercel.app/learn/history-of-star-naming',
+  },
+};
 
 export default function HistoryOfStarNamingPage() {
   return (

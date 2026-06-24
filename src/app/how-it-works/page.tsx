@@ -1,4 +1,13 @@
+import type { Metadata } from 'next';
 import LegalPageLayout from '@/components/LegalPageLayout';
+
+export const metadata: Metadata = {
+  title: 'How It Works | Your Name in Stars',
+  description: 'Discover the technology and science behind Your Name in the Stars. Learn how we map your name to real celestial coordinates using the HYG Stellar Database.',
+  alternates: {
+    canonical: 'https://your-name-in-stars.vercel.app/how-it-works',
+  },
+};
 
 export default function HowItWorksPage() {
   return (

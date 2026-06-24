@@ -1,5 +1,14 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import LegalPageLayout from '@/components/LegalPageLayout';
+
+export const metadata: Metadata = {
+  title: 'Learn About Stars & Astronomy | Your Name in Stars',
+  description: 'Explore the science, history, and wonder of the cosmos. Read our articles on star naming, celestial coordinates, brightest stars, and the HYG database.',
+  alternates: {
+    canonical: 'https://your-name-in-stars.vercel.app/learn',
+  },
+};
 
 export default function LearnIndexPage() {
   const articles = [

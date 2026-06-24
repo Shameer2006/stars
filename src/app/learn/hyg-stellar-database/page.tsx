@@ -1,4 +1,13 @@
+import type { Metadata } from 'next';
 import LegalPageLayout from '@/components/LegalPageLayout';
+
+export const metadata: Metadata = {
+  title: 'Understanding the HYG Stellar Database | Your Name in Stars',
+  description: 'Learn about the science and data behind the real stars used in our interactive celestial maps. We use the Hipparcos, Yale Bright Star, and Gliese Catalogs.',
+  alternates: {
+    canonical: 'https://your-name-in-stars.vercel.app/learn/hyg-stellar-database',
+  },
+};
 
 export default function HYGDatabasePage() {
   return (
